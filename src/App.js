@@ -1,24 +1,44 @@
-import logo from './logo.svg';
-import './App.css';
+import { Routes, Route, Navigate } from "react-router-dom";
+
+import { useAuth } from "./context/AuthContext";
+
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import Dashboard from "./pages/Dashboard";
+import SearchNotes from "./pages/SearchNotes";
+import NotesForMe from "./pages/NotesForMe";
 
 function App() {
+  const { user } = useAuth();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Routes>
+      {/* Public routes */}
+      <Route path="/register" element={<Register />} />
+
+      <Route path="/login" element={<Login />} />
+
+      {/* Protected routes */}
+      <Route
+        path="/dashboard"
+        element={user ? <Dashboard /> : <Navigate to="/login" />}
+      />
+
+      <Route
+        path="/search-notes"
+        element={user ? <SearchNotes /> : <Navigate to="/login" />}
+      />
+
+      {/* Default route */}
+      <Route
+        path="*"
+        element={<Navigate to={user ? "/dashboard" : "/login"} />}
+      />
+      <Route
+        path="/notes-for-me"
+        element={user ? <NotesForMe /> : <Navigate to="/login" />}
+      />
+    </Routes>
   );
 }
 
