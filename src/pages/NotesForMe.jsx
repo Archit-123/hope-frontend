@@ -10,8 +10,6 @@ function NotesForMe() {
   const [selectedNote, setSelectedNote] = useState(null);
   const [otp, setOtp] = useState("");
 
-  const [unlocked, setUnlocked] = useState(false);
-
   const handleSendOtp = async () => {
     await API.post("/nominees/send-otp", {
       noteId: selectedNote._id,
