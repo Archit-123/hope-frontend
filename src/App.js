@@ -7,6 +7,7 @@ import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
 import SearchNotes from "./pages/SearchNotes";
 import NotesForMe from "./pages/NotesForMe";
+import LandingPage from "./pages/LandingPage";
 
 function App() {
   const { user } = useAuth();
@@ -14,6 +15,7 @@ function App() {
   return (
     <Routes>
       {/* Public routes */}
+      <Route path="/" element={<LandingPage />} />
       <Route path="/register" element={<Register />} />
 
       <Route path="/login" element={<Login />} />
