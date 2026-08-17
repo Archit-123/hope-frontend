@@ -1661,3 +1661,32 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* =========================================
+   HERO MOBILE OVERFLOW FIX
+========================================= */
+
+@media (max-width: 600px) {
+  .hero-grid,
+  .hero-content,
+  .hero-visual {
+    min-width: 0;
+    width: 100%;
+  }
+
+  .hero-content h1 {
+    width: 100%;
+    max-width: 100%;
+    overflow-wrap: break-word;
+    word-break: normal;
+  }
+
+  .hero-description {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .hero-buttons {
+    width: 100%;
+  }
+}
